@@ -18,6 +18,8 @@ package
 			var endpoint: String = this.root.loaderInfo.parameters.endpoint;
 			var ct: String = (this.root.loaderInfo.parameters.ct)?this.root.loaderInfo.parameters.ct:"application/json";
 			var request: URLRequest = new URLRequest(url + "?endpoint=" + endpoint);
+			if (this.root.loaderInfo.parameters.testheader)
+			request.requestHeaders.push(new URLRequestHeader(this.root.loaderInfo.parameters.testheader.split(":")[0], this.root.loaderInfo.parameters.testheader.split(":")[1]));
 			request.requestHeaders.push(new URLRequestHeader("Content-Type", ct));
 			request.data = (this.root.loaderInfo.parameters.reqmethod=="GET")?"":myJson;
 			request.method = (this.root.loaderInfo.parameters.reqmethod)?this.root.loaderInfo.parameters.reqmethod:URLRequestMethod.POST;
